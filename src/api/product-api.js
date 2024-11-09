@@ -9,3 +9,9 @@ export const getProducts = async () => {
   const products = await response?.data;
   return products;
 };
+
+export const getProduct = async ({ queryKey }) => {
+  const response = await axiosInstance.get(`/${queryKey[0]}/${queryKey[1]}`);
+  const product = await response?.data;
+  return product;
+};
