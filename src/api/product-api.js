@@ -15,3 +15,9 @@ export const getProduct = async ({ queryKey }) => {
   const product = await response?.data;
   return product;
 };
+
+export const addProduct = async (newProduct) => {
+  const response = await axiosInstance.post("/products", newProduct);
+  const product = await response?.data;
+  return product;
+};
