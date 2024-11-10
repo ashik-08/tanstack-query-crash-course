@@ -10,6 +10,7 @@ const ProductList = () => {
     queryKey: ["products"],
     queryFn: getProducts,
   });
+  console.log(products);
 
   if (isLoading) {
     return <div>Loading...</div>;

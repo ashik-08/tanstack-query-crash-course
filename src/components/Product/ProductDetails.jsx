@@ -22,12 +22,13 @@ const ProductDetails = ({ id }) => {
   return (
     <div className="w-1/5">
       <h1 className="text-3xl my-2">Product Details</h1>
-      <div className="border bg-gray-100 p-1 text-md rounded flex flex-col">
+      <div className="border bg-gray-100 mt-4 p-2 text-md rounded flex flex-col">
         <img
           src={product.thumbnail}
           alt={product.title}
           className="object-cover h-24 w-24 border rounded-full m-auto"
         />
+        <p>{product.category}</p>
         <p>{product.title}</p>
         <p>{product.description}</p>
         <p>USD {product.price}</p>
