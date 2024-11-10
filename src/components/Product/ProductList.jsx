@@ -1,16 +1,18 @@
 import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
 import { getProducts } from "../../api/product-api";
 
 const ProductList = () => {
+  const [page, setPage] = useState(1);
+
   const {
     data: products,
     error,
     isLoading,
   } = useQuery({
-    queryKey: ["products"],
+    queryKey: ["products", page],
     queryFn: getProducts,
   });
-  console.log(products);
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -24,8 +26,8 @@ const ProductList = () => {
     <div className="flex flex-col justify-center items-center w-3/5">
       <h2 className="text-3xl my-2">Product List</h2>
       <ul className="flex flex-wrap justify-center items-center">
-        {products &&
-          products.map((product) => (
+        {products?.data &&
+          products?.data?.map((product) => (
             <li
               key={product.id}
               className="flex flex-col items-center m-2 border rounded-sm"
@@ -39,8 +41,8 @@ const ProductList = () => {
             </li>
           ))}
       </ul>
-      {/* <div className="flex">
-        {products.prev && (
+      <div className="flex">
+        {products?.prev && (
           <button
             className="p-1 mx-1 bg-gray-100 border cursor-pointer rounded-sm"
             onClick={() => setPage(products.prev)}
@@ -49,7 +51,7 @@ const ProductList = () => {
             Prev{" "}
           </button>
         )}
-        {products.next && (
+        {products?.next && (
           <button
             className="p-1 mx-1 bg-gray-100 border cursor-pointer rounded-sm"
             onClick={() => setPage(products.next)}
@@ -58,7 +60,7 @@ const ProductList = () => {
             Next{" "}
           </button>
         )}
-      </div> */}
+      </div>
     </div>
   );
 };
